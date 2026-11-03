@@ -38,7 +38,7 @@ Putting the grid, start, goal, and spatial rules inside the `Maze` class is a cl
 
 - **Bundles state + behavior**: The data (grid, dimensions, start/goal) and the rules that operate on it (`is_valid_position`, `get_distance`) live together. Users interact with the object rather than manipulating the raw grid directly.
 - **Hides implementation details**: The rest of the system (Individual, Population, Selection, Crossover, EvolutionEngine, etc.) only needs to ask the Maze “is this position valid?” or “what is the distance to the goal?” It does not care whether the grid is a Python list, a NumPy array, or something else.
-- **Clean separation of concerns**: The evolutionary algorithm owns the search mechanisms (genotypes, variation, selection). The Maze owns the problem domain (what a valid path looks like, how fitness relates to the environment). This mirrors the genotype/phenotype split in DeJong’s framework.
+- **Clean separation of concerns**: The evolutionary algorithm owns the search mechanisms (genotypes, variation, selection). The Maze owns the problem domain (what a valid path looks like, how fitness relates to the environment). This mirrors the genotype/phenotype concept in DeJong’s framework.
 - **Easier testing and reuse**: You can unit-test the Maze independently, swap in different mazes (or even different environment classes) without changing the GA code, and keep the evolutionary operators polymorphic and reusable.
 - **Supports modularity and future extension**: If you later want a different heuristic, a continuous maze, or a multi-agent environment, you can change or subclass `Maze` while the core EvolutionEngine stays the same.
 
