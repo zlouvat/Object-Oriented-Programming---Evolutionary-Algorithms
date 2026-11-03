@@ -29,12 +29,15 @@ These concepts are mapped to distinct classes so that algorithmic components can
 ## Running the Project
 ### Colab Notebook
 The main interactive notebook is available here:  
-[Link to your Colab]
+(https://colab.research.google.com/drive/1dIDazAWaVwX_Q8tqFYaHjDDqrmPf98kW)
 
-### Local Setup (optional)
+## Running the Project
+The main notebook is included in this repository as `maze_solver.ipynb`.
+
+You can also view/run the interactive version in Colab:  
+(https://colab.research.google.com/drive/1dIDazAWaVwX_Q8tqFYaHjDDqrmPf98kW)
+
+To run locally:
 ```bash
-# Clone the repo
-git clone [your-repo-url]
-
-# Install dependencies
-pip install numpy matplotlib
+pip install -r requirements.txt
+jupyter notebook maze_solver.ipynb
