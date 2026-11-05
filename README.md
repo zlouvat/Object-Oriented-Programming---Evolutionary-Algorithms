@@ -42,6 +42,65 @@ Putting the grid, start, goal, and spatial rules inside the `Maze` class is a cl
 - **Easier testing and reuse**: You can unit-test the Maze independently, swap in different mazes (or even different environment classes) without changing the GA code, and keep the evolutionary operators polymorphic and reusable.
 - **Supports modularity and future extension**: If you later want a different heuristic, a continuous maze, or a multi-agent environment, you can change or subclass `Maze` while the core EvolutionEngine stays the same.
 
+## DeJong Java Code
+### DeJong-Style Individual (Java)
+
+```java
+public class Individual<G> {
+    private final G representation;
+    private double fitness;
+
+    public Individual(G representation) {
+        this.representation = representation;
+        this.fitness = Double.NaN;
+    }
+
+    public G getRepresentation() {
+        return representation;
+    }
+
+    public double getFitness() {
+        return fitness;
+    }
+
+    public void setFitness(double fitness) {
+        this.fitness = fitness;
+    }
+}
+
+// Strategy Interface for Selection
+public interface SelectionOperator<G> {
+    Individual<G> select(Population<G> population);
+}
+
+// Strategy Interface for Variation (Crossover)
+public interface CrossoverOperator<G> {
+    List<Individual<G>> cross(Individual<G> p1, Individual<G> p2);
+}
+
+public class EvolutionEngine<G> {
+    private SelectionOperator<G> selector;
+    private CrossoverOperator<G> crossover;
+    private FitnessFunction<G> fitnessFunc;
+
+    public Population<G> step(Population<G> current) {
+        Population<G> nextGen = new Population<>();
+
+        while (!nextGen.isFull()) {
+            Individual<G> p1 = selector.select(current);
+            Individual<G> p2 = selector.select(current);
+
+            var offspring = crossover.cross(p1, p2);
+            offspring.forEach(child -> fitnessFunc.evaluate(child));
+
+            nextGen.addAll(offspring);
+        }
+
+        return nextGen;
+    }
+}
+```
+
 ## Running the Project
 ### Colab Notebook
 The main interactive notebook is available here:  
