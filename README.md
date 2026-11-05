@@ -43,7 +43,24 @@ Putting the grid, start, goal, and spatial rules inside the `Maze` class is a cl
 - **Supports modularity and future extension**: If you later want a different heuristic, a continuous maze, or a multi-agent environment, you can change or subclass `Maze` while the core EvolutionEngine stays the same.
 
 ## DeJong Java Code
-### DeJong-Style Individual (Java)
+### DeJong’s Unified Framework in Object-Oriented Form
+
+The following design maps Kenneth DeJong’s evolutionary architecture into three core pieces:
+
+- **Individual**  
+  Encapsulates a genotype (`representation`) and its fitness score. The representation is generic so the same class can hold bit strings, real vectors, path genes, or any other encoding without changing the rest of the engine.
+
+- **Selection & Crossover Operators (Strategy Pattern)**  
+  Selection and crossover are defined as interfaces. Concrete implementations (tournament selection, single-point crossover, etc.) can be swapped at runtime. This keeps the evolutionary loop independent of any particular operator.
+
+- **EvolutionEngine**  
+  Owns the generational loop. On each step it:
+  1. Selects two parents from the current population
+  2. Produces offspring via the crossover operator
+  3. Evaluates the offspring with a fitness function
+  4. Adds them to the next generation until the population is full
+
+This structure directly reflects DeJong’s genotype/phenotype split and the idea that variation operators and selection methods are interchangeable components of a unified evolutionary algorithm. Because the engine only depends on the operator interfaces, new selection or crossover strategies can be added without modifying the core loop.
 
 ```java
 public class Individual<G> {
