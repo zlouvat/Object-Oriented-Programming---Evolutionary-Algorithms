@@ -34,7 +34,7 @@ This keeps the environment simple and focused so the evolutionary algorithm can 
 
 ### How encapsulating the maze benefits the architecture
 
-Putting the grid, start, goal, and spatial rules inside the `Maze` class is a clear application of encapsulation and abstraction:
+Putting the grid, start, goal, and spatial rules inside the `Maze` class is clear usage of encapsulation and abstraction:
 
 - **Bundles state + behavior**: The data (grid, dimensions, start/goal) and the rules that operate on it (`is_valid_position`, `get_distance`) live together. Users interact with the object rather than manipulating the raw grid directly.
 - **Hides implementation details**: The rest of the system (Individual, Population, Selection, Crossover, EvolutionEngine, etc.) only needs to ask the Maze “is this position valid?” or “what is the distance to the goal?” It does not care whether the grid is a Python list, a NumPy array, or something else.
