@@ -62,6 +62,8 @@ The following design maps Kenneth DeJong’s evolutionary architecture into thre
 
 This structure directly reflects DeJong’s genotype/phenotype split and the idea that variation operators and selection methods are interchangeable components of a unified evolutionary algorithm. Because the engine only depends on the operator interfaces, new selection or crossover strategies can be added without modifying the core loop.
 
+While building the slides I used Mark Meysenburg’s Doane Evolutionary Algorithm (DEA) Java library as a reference. It implements many of the same ideas (different chromosomal representations, crossovers, mutations, and elitist selection) and closely follows DeJong’s framework, which helped me connect the chapter concepts to concrete class design even though the code was in Java.
+
 ```java
 public class Individual<G> {
     private final G representation;
@@ -118,18 +120,29 @@ public class EvolutionEngine<G> {
 }
 ```
 
+## Reflection & Connections
+Working on the maze solver notebook made me connect DCS229 and DeJong’s framework concretely. The Manhattan-distance measurement we studied with Dijkstra’s became our fitness signal, while the modular class design let me treat selection and crossover as interchangeable parts, in the same way we discussed when looking at reusable components in class. The most useful part of the project was seeing how little of the evolutionary loop has to change when operators or the environment change. Swapping selection methods or mutation strategies lets the same algorithm take on a different mechanism without rewriting the core engine. The mazes used here are relatively simple; a natural next step would be more complex mazes with different wall types that require finer solution strategies. This directly mirrors the genotype/phenotype separation DeJong describes and the modularity we were looking for in the previous assignments.
+
 ## Running the Project
 ### Colab Notebook
 The main interactive notebook is available here:  
-(https://colab.research.google.com/drive/1dIDazAWaVwX_Q8tqFYaHjDDqrmPf98kW)
-
-## Running the Project
-The main notebook is included in this repository as `maze_solver.ipynb`.
-
-You can also view/run the interactive version in Colab:  
-(https://colab.research.google.com/drive/1dIDazAWaVwX_Q8tqFYaHjDDqrmPf98kW)
+[Open in Colab](https://colab.research.google.com/drive/1dIDazAWaVwX_Q8tqFYaHjDDqrmPf98kW)
+1. Maze environment — Defines the grid, validity checks, and Manhattan-distance heuristic.
+2. Individual — Represents a candidate path as a fixed-length string of moves and evaluates fitness against the maze.
+3. Population — Handles tournament selection (size 5), elitism, crossover, and mutation.
+4. Running the algorithm — Demonstrates the solver on a simple 6×6 maze and a larger 10×10 maze.
+   
+The notebooks were initially generated with Gemini, with documentation added manually after the fact. The primary packages used are NumPy (for the grid representation) and Python’s built-in random module.
 
 To run locally:
 ```bash
 pip install -r requirements.txt
-jupyter notebook maze_solver.ipynb
+jupyter notebook Maze_Solver_Object_Oriented_Programming_3.ipynb
+```
+
+## References
+DeJong, K. A. Evolutionary Computation: A Unified Approach Chapter 1. MIT Press, 2006.
+Manhattan Distance explanation: [GeeksforGeeks](https://www.geeksforgeeks.org/dsa/manhattan-distance/)
+Mark Meysenburg’s Doane Evolutionary Algorithm (DEA) Java library [(used as a structural reference for the slides)](https://github.com/mmeysenburg/DEA)
+NumPy documentation: https://numpy.org/doc/
+AI assistance: Gemini was used to generate initial versions of the color-picker, maze-solver, 8 Queens, and Game of Life notebooks; the maze solver was then extensively revised by me alone, along with adding manual documentation to all 4 codebooks, with a bit more done with the Maze solver, including my reflection.
