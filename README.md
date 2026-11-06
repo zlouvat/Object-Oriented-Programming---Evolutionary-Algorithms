@@ -141,8 +141,8 @@ jupyter notebook Maze_Solver_Object_Oriented_Programming_3.ipynb
 ```
 
 ## References
-DeJong, K. A. Evolutionary Computation: A Unified Approach Chapter 1. MIT Press, 2006.
-Manhattan Distance explanation: [GeeksforGeeks](https://www.geeksforgeeks.org/dsa/manhattan-distance/)
-Mark Meysenburg’s Doane Evolutionary Algorithm (DEA) Java library [(used as a structural reference for the slides)](https://github.com/mmeysenburg/DEA)
-NumPy documentation: https://numpy.org/doc/
-AI assistance: Gemini was used to generate initial versions of the color-picker, maze-solver, 8 Queens, and Game of Life notebooks; the maze solver was then extensively revised by me alone, along with adding manual documentation to all 4 codebooks, with a bit more done with the Maze solver, including my reflection.
+* DeJong, K. A. Evolutionary Computation: A Unified Approach Chapter 1. MIT Press, 2006.
+* Manhattan Distance explanation: [GeeksforGeeks](https://www.geeksforgeeks.org/dsa/manhattan-distance/)
+* Mark Meysenburg’s Doane Evolutionary Algorithm (DEA) Java library [(used as a structural reference for the slides)](https://github.com/mmeysenburg/DEA)
+* NumPy documentation: https://numpy.org/doc/
+* AI assistance: Gemini was used to generate initial versions of the color-picker, maze-solver, 8 Queens, and Game of Life notebooks; the maze solver was then extensively revised by me alone, along with adding manual documentation to all 4 codebooks, with a bit more done with the Maze solver, including my reflection.
